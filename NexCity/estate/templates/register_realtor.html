@@ -1,0 +1,290 @@
+{%extends 'base.html' %}
+{%load static %}
+
+{%  block title %}Reealtor Registration{%endblock %}
+
+{%  block body %}
+<br>
+<br><br>
+<h1 class="text-center">Realtor Registration</h1>
+<div class="container px-4 py-4">
+    <h2 class="pb-2 border-bottom">Join Our Winning Team of Realtors</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+      <div class="col d-flex flex-column align-items-start gap-2">
+        <img src="{% static 'images/realtor1.jpg' %}" style="width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;" alt="">
+        <h3 class="fw-bold text-body-emphasis">Turn your passion for Real Estate into a Rewarding Career</h3>
+        <p class="text-body-secondary" >Welcome to <strong>NexCity</strong>, Where we empower aspiring real estate professionals to thrive in a dynamic industry. Join us in transforming properties into possibilities and embark on a journey where every sale is a step towards success. Explore the world of real estate with us, where your ambition meets endless opportunities!</p>
+        <a href="#" class="btn btn-oranger">Register Now</a>
+      </div>
+
+      <div class="col">
+        <div class="row row-cols-1 row-cols-sm-2 g-4">
+          <div class="col d-flex flex-column gap-2">            
+            <h5 class="fw-semibold mb-0 text-body-emphasis">Comprehensive Training</h5>
+            <p class="text-body-secondary" style="font-size: small;">Gain access to top-notch training programs designed to equip you with the knowledge, skills, and tools needed to excel in the competitive real estate market.</p>
+          </div>
+
+          <div class="col d-flex flex-column gap-2">
+            <h5 class="fw-semibold mb-0 text-body-emphasis">Exclusive Giveaways and Incentives</h5>
+            <p class="text-body-secondary" style="font-size: small;">As a valued member of our team, you'll enjoy exclusive giveaways and incentives that recognize your hard work and dedication. From luxury retreats to cutting-edge gadgets e.t.c.</p>
+          </div>
+
+          <div class="col d-flex flex-column gap-2">
+            <h5 class="fw-semibold mb-0 text-body-emphasis">Expansive Network and Connections</h5>
+            <p class="text-body-secondary" style="font-size: small;">Connect with a diverse network of industry professionals, mentors, and like-minded individuals who are passionate about real estate. </p>
+          </div>
+
+          <div class="col d-flex flex-column gap-2">
+            
+            <h5 class="fw-semibold mb-0 text-body-emphasis">Flexible Work Environment</h5>
+            <p class="text-body-secondary" style="font-size: small;">Whether you prefer to work remotely or in a traditional office setting, we offer a supportive environment where you can thrive and achieve work-life balance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row g-5">
+      
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Register as Realtor</h4>
+        <form class="needs-validation" novalidate method="POST" action="/register_realtor/">
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">First name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" name="first_name" value="" required>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" name="last_name" required>
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+            
+
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email" required>
+              <div class="invalid-feedback">
+                Please enter a valid email address for contact updates.
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="phone" placeholder="0000 000 0000" name="phone" required>
+              <div class="invalid-feedback">
+                Please enter a valid Phone number
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="image" class="form-label">Profile Picture</label>
+              <input type="file" class="form-control" id="image" placeholder="insert photo here less than 1mb" name="profile_picture">
+              <div class="invalid-feedback">
+                Please a recent profile photo of you
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required name="address">
+              <div class="invalid-feedback">
+                Please enter your current address.
+              </div>
+            </div>
+
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" required name="state">
+                <option value="">Choose...</option>
+                <option>Anambra</option>
+                <option>Delta</option>
+                <option>Benue</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="occupation" class="form-label">occupation</label>
+              <select class="form-select" id="occupation" required name="occupation">
+                <option value="">Choose...</option>
+                <option>Student</option>
+                <option>Employed</option>
+                <option>Unemployed</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            </div>
+
+      
+          </div>
+
+
+        
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Gender</h4>
+
+          <div class="my-3">
+            <div class="form-check">
+              <input id="credit" name="gender" type="radio" class="form-check-input" checked required>
+              <label class="form-check-label" for="credit">Male</label>
+            </div>
+            <div class="form-check">
+              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="debit">Female</label>
+            </div>
+            
+
+          </div>
+
+          <div class="row gy-3">
+            <div class="col-md-6">
+              <label for="cc-name" class="form-label">Bank Name</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" name="bank_name">      
+              <div class="invalid-feedback">
+                Your Bank Name is required
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-name" class="form-label">Account Name</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" name="account_name">
+              <small class="text-body-secondary">Full name as displayed on bank</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-number" class="form-label">Account Number</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" name="account_number">
+              <div class="invalid-feedback">
+                Account Number
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-expiration" class="form-label">Name of Invitee</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" name="invitee">
+             
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-cvv" class="form-label">Contact Invitee</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" name="contact_invitee">
+              
+            </div>
+          </div>
+
+          <hr>
+          <p>To validate your Membership, you are to make a one time payment of N5000 to: <br>
+          <strong>Bank Name: UBA <br>Account No: 7057875669 <br>Account Name: NexCity Real Estates</strong> <br> and upload receipt below or visit our closest <a href="#">Branch</a></p>
+          
+<div class="col-12">
+            <label for="receipt" class="form-label">Receipt</label>
+            <input type="file" class="form-control" id="receipt" placeholder="insert receipt here less than 1mb" name="receipt">
+            <div class="invalid-feedback">
+              Upload a clear receipt or screenshot of payment
+            </div>
+          </div>
+          <hr class="my-4">
+
+          
+
+          <button class="w-100 btn btn-oranger btn-lg" type="submit">Register</button>
+        </form>
+      </div>
+      
+      <div class="col-md-5 col-lg-4 ">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="oranger mx-2">FAQS</span>
+        </h4><hr>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header " id="flush-headingOne">
+              <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-controls="flush-collapseOne">
+                1. How do I register as a realtor?
+            </h2>
+            <div class="accordion-collapse collapse" id="questionOne" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body p-3" >
+                To register as a realtor, please fill out the registration form on our website and submit the required documents.</div>
+              </div>
+            </div>
+          
+
+
+          <div class="accordion-item">
+            <h2 class="accordion-header " id="flush-headingOne">
+              <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionTwo" aria-controls="flush-collapseOne">
+                2. What documents do I need to submit for registration?
+            </h2>
+            <div class="accordion-collapse collapse" id="questionTwo" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body p-3" >
+                You will need to submit a valid government-issued ID, NIN, or voter's card and any additional documentation required by our agency.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header " id="flush-headingOne">
+              <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionThree" aria-controls="flush-collapseOne">
+                3. Is there a registration fee?
+            </h2>
+            <div class="accordion-collapse collapse" id="questionThree" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body p-3" >
+                Yes, there is a registration fee to become a realtor with our agency, and its just N5000 one time life time payment, you can choose to pay now or later to be certified.
+             
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header " id="flush-headingOne">
+              <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionFour" aria-controls="flush-collapseOne">
+                4. How long does the registration process take?
+            </h2>
+            <div class="accordion-collapse collapse" id="questionFour" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body p-3" >
+                The registration process typically takes 1-2 business days after we receive all required documents. You can always contact our customer care if it exceeds
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header " id="flush-headingOne">
+              <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionFive" aria-controls="flush-collapseOne">
+                5. What are the benefits of registering as a realtor with your agency?
+            </h2>
+            <div class="accordion-collapse collapse" id="questionFive" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body p-3" >
+                As a registered realtor with our agency, you gain access to exclusive property listings, marketing support, training resources, and a supportive community of fellow real estate professionals
+              </div>
+            </div>
+          </div>
+        
+
+      </div>
+    </div></div>
+
+
+
+
+{%endblock %}

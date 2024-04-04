@@ -1,0 +1,167 @@
+
+/* Custom CSS for text size */
+p.main{
+        color: rgb(255, 102, 0);
+        font-size: 45px; 
+        font-family: 'montserrat';
+
+}
+
+.btn-oranger{
+    background-color:  rgb(255, 102, 0);
+     color: white;
+     border-color: rgba(240, 248, 255, 0);
+}
+
+.btn-oranger:hover{
+    background-color:  rgb(173, 71, 3);
+     color: white;
+     border-color: rgba(240, 248, 255, 0);
+}
+
+.oranger{
+    color: rgb(255, 102, 0);
+}
+
+.oranger-btn{
+    background-color: white;
+    border-color: rgb(255, 102, 0);
+    color: rgb(255, 102, 0);
+}
+
+a.nav-link {
+    font-size: small;
+}
+
+div.buy-join{
+    display: flex;
+    
+    
+}
+
+.buy-join a{
+    
+    text-decoration: none;
+    color:  rgb(255, 102, 0);
+    font-weight: 600;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.buy-join a:hover{
+    text-align: center;
+    text-decoration: none;
+    color:  rgb(197, 98, 32);
+    font-weight: 600;
+    border-bottom: orange;
+    border-width: bold;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 475.98px) { /* Small screens */
+    p.main {
+        font-size: 35px; 
+         /* Adjust font size for small screens */
+    }
+}
+@media (max-width: 475.98px) { /* Small screens */
+    div.buy-join {
+        justify-content: center; 
+         /* Adjust font size for small screens */
+    }
+}
+
+@media (min-width: 476px) { /* Medium and larger screens */
+    p.main {
+        font-size: 2.5rem; /* Adjust font size for medium and larger screens */
+    }
+}
+
+
+
+.ticker-container {
+    overflow: hidden;
+    background-color: black;
+  }
+  
+  .ticker {
+    display: flex;
+    animation: ticker-slide 20s linear infinite;
+  }
+  
+  .ticker-text {
+    color: white;
+    padding-right: 0%; /* Adjust according to the length of the text */
+  }
+  
+  .ticker-text span{
+    color: orange;
+    padding-right: 0%; /* Adjust according to the length of the text */
+  }
+  
+  @keyframes ticker-slide {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+
+
+.cards {
+    display: flex;
+    margin-top: 25px;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.card{
+    flex-grow: 1;
+    flex-basis: 300px;
+    background:linear-gradient(45deg, #fff9f4, #ffffff );
+    padding: 2px;
+    border-radius: 8px;
+    text-decoration: none;
+
+}
+
+.card img{
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.im img{
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.card_body {
+    text-align: start;
+    padding: 15px 20px 20px;
+    
+    color: black;
+}
+
+.card_title{
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0;
+}
+.card_body{
+    font-size: 14px;
+    font-weight: lighter;
+
+   
+}
+
+td{
+    font-size: smaller;
+}
+
+p.policy{
+    color: aqua;
+}

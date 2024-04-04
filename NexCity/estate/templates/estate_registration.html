@@ -1,0 +1,81 @@
+{%extends 'base.html' %}
+{%load static %}
+
+{%  block title %}Register Estate{%endblock %}
+
+{%  block body %}
+<div class="container">
+    <br><br><br>
+<div class="col-sm-6 offset-sm-3">
+<h3 class="text-center my-4">Register New Estates</h3>
+
+    <form class="needs-validation" novalidate method="POST" action="/estate_registration/">
+        {% csrf_token %}
+        
+          
+            <label for="firstName" class="form-label">Estate name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" name="title" value="" required>
+            <div class="invalid-feedback">
+              Valid Estate name is required.
+            </div>
+          
+          
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" placeholder="" name="location" value="" required>
+            <div class="invalid-feedback">
+              Valid Location is required.
+            </div>
+          
+          
+            <label for="documents" class="form-label">Documents</label>
+            <input type="text" class="form-control" id="documents" placeholder="" name="documents" value="">
+            
+          
+            <label for="landmarks" class="form-label">Landmarks</label>
+            <input type="text" class="form-control" id="landmarks" placeholder="" name="landmarks" value="">
+            
+
+            <label for="features" class="form-label">Features</label>
+            <input type="text" class="form-control" id="features" placeholder="" name="features" value="">
+            
+            <label for="google_map" class="form-label">Google Map</label>
+            <input type="text" class="form-control" id="google_map" placeholder="" name="google_map" value="">
+            
+
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" placeholder="" name="price" value="">
+            
+
+            <label for="size" class="form-label">Size</label>
+            <input type="number" class="form-control" id="size" placeholder="" name="size" value="">
+            
+
+          <div class="col-12">
+            <label for="image" class="form-label">Land Image</label>
+            <input type="file" class="form-control" id="image" placeholder="insert photo here less than 1mb" name="land_image">
+          </div>
+
+          <div class="col-12">
+            <label for="subscription_form" class="form-label">Subscription Form</label>
+            <input type="file" class="form-control" id="subscription_form" placeholder="insert photo here less than 1mb" name="subscription_form">
+          </div>
+
+          <label for="c_of_o" class="form-label">Certificate of Ownership</label>
+          <select class="form-select" id="c_of_o" required name="c_of_o">
+            <option value="">Choose...</option>
+            <option>Global</option>
+            <option>Personal</option>
+            <option>None</option>
+          </select>
+
+
+        <hr class="my-4">
+
+        
+
+        <button class="w-100 btn btn-oranger btn-lg" type="submit">Register</button>
+      </form>
+</div></div>
+
+
+{%endblock %}

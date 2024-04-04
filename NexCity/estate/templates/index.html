@@ -1,0 +1,224 @@
+{%extends 'base.html'%}
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%} Home {%endblock%} </title>
+</head>
+<body>
+    {%block body%} 
+    <div style="background-color:  rgb(252, 237, 221) ;">
+        <div class="container" ><div class="row text-align-center pt-5">
+          
+        <div class="col-lg ">
+            <div class="text-center text-sm-start">
+          <h3 class="mt-5">Welcome to NexCity</h3>
+                        <p class="fw-bold pt-3 main">No 1# Real Estate Investors Trust</p>
+                        <small>Secure Your Ultimate Land Investment Today with <strong>Nex<span class="oranger">City</strong> ...</small> <br></div><hr>
+                    
+                          <div class="buy-join ">
+                            <a href="/all_listing/">Buy Estate</a>
+                            <a href="/register_realtor/">Join Realtors</a>
+                          </div>
+
+                        <form class="d-flex" role="search" action="/search">
+                          
+                          <input class="form-control me-2" type="search" placeholder="Address, City, State or Neighbourhood" name = "search" aria-label="Search">
+                          <button class="btn btn-outline-dark oranger-btn" type="submit">Search</button>
+                        </form>
+                        
+
+                        <!-- <a href="all_listing/" class="btn btn-warning shadow my-2 px-5 mr-3 py-2 ns-4" style="color: white; background-color:  rgb(255, 102, 0);"> Buy Estate </a>
+                       
+                        <a href="register_realtor/" class="btn btn-warning shadow px-4 px-sm-5 mr-3 py-2 ns-4" style="color: rgb(255, 102, 0); border-color:  rgb(255, 102, 0); background-color: white;"> Become a Realtor </a> -->
+                      </div>
+
+                        <div class="col-lg">
+                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img src="{% static 'images/banner1.png' %}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                  <img src="{% static 'images/banner2.png' %}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                  <img src="{% static 'images/banner3.png' %}" class="d-block w-100" alt="...">
+                                </div>
+                                
+                              </div>
+                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                            </div>
+                          </div>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="ticker-container">
+                            <div class="ticker">
+                              <div class="ticker-text">
+                                Don't wait to buy land, <span class="oranger"> - Buy land and wait </span>** Become a Landlord today, ** Elevate Your Real Estate Journey <span class="oranger"> - Be Part of our 10,000+ team of realtors </span>**  
+                              </div>
+                            </div>
+                          </div>
+
+
+
+<!-- Listing Page -->
+<div class=""style="background-color:  rgb(232, 244, 253) ;">
+    <div class=" " >
+        <div class="row  text-center p-sm-3  text-dark border-bottom shadow bg-light" >
+          <h2 class="text-dark p-3 text-center">Explore Our Listings</h2><hr>
+          <p class="para-products-offer px-4" style="font-size: 12px; font-family:'montserrat">
+            Browse through our extensive inventory of land listings, showcasing detailed information, stunning imagery, and comprehensive descriptions. Utilize our advanced search filters to narrow down your options by location, acreage, terrain features, and more.
+          </p>
+          
+          <h3 class="text-dark mx-4 text-start">Recent Estates</h3><hr>
+          <!-- {% for i in estate %}
+
+          <div class="col text-center mb-4">
+            <div class="col m-2 shadow" style="border-radius: 10px; background:linear-gradient(45deg, #fcecde, #ffffff );">
+              <a href='/land_details/{{i.id}}' class="btn">
+                  <div class="text-start">
+                          <img class="text-center" src="{{i.image.url}}"  width="me-auto" height="250
+                          px" alt="">
+                          
+                      <h5 class="text-capitalize text-lg">{{i.title}}</h5>
+                      <div class="row">
+                      <div class="col-9">
+                      <small>{{i.location}}</small><p><span class="fw-bold">
+                      N {{i.discounted_price}}</span>
+                          <small class="fw-light text-decoration-line-through">
+                              N{{i.price}}
+                          </small></p></div>
+                          <div class="col-3 text-start">
+                              <button  class="btn btn-warning" style="background-color:  rgb(255, 102, 0); color: white;"> view</button>
+                          </div>
+                       </div>
+                      
+                  </div>
+              </a>
+              
+          </div>
+        
+        </div>
+          
+          {% endfor %}
+ -->
+
+          <div class="container px-4">
+<div class="row">
+          {% for i in estate %}
+        
+          <div class="col-md-4 col-sm-6 ">
+          <div class="cards shadow">
+            <a href="/land_details/{{i.id}}" class="card">
+              <img src="{{i.image.url}}" alt="">
+              <div class="card_body">
+                <h5 class="card_title" style="text-decoration: none;">{{i.title}}</h5>
+                <p class="card_text" style="margin-bottom: 5px;">{{i.location}}</p>
+                
+                <div class="d-flex justify-content-between">
+                  <div>
+                
+                    <h6 class="card_title" style="text-decoration: none; margin: 0;">N{{i.price}}</h6>
+                <p style="margin: 0;"><small class="fw-bold">{{i.size}}SQM</small></p>
+                </div>
+                <div>
+                  <button class="btn-sm btn-oranger" > Contact Agent</button>
+                </div>
+              </div>
+
+              </div>
+            </a>
+          </div>
+        </div>
+        
+          {% endfor %}</div><a href="all_listing/" class="btn m-4 btn-oranger" > View All Land Listings </a></div>
+
+
+          <div class="container">
+            <h3 class="text-center pt-5">Frequently Asked Questions</h3><hr>
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header " id="flush-headingOne">
+                <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-controls="flush-collapseOne">
+                  How It works?
+              </h2>
+              <div class="accordion-collapse collapse" id="questionOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-3" >
+                  1. Browse: Explore our wide range of services and products. <br>
+        
+                  2. Customize: Contact us to discuss your project requirements and get a personalized quote. <br>
+                  
+                  2. Payment : Make complete or advance payment through any of our vaious method to kick start production. <br>
+                  
+                  3. Create: Sit back while our experts bring your vision to life. <br>
+                  
+                  4. Enjoy: Whether it's a stunning website, captivating graphics, or beautifully printed materials, enjoy the results of our hard work. <br> 
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header " id="flush-headingOne">
+                <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-controls="flush-collapseOne">
+                  How do we locate you?
+              </h2>
+              <div class="accordion-collapse collapse" id="questionOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-3" >
+             Through our address at Izunna Junction / Second Market Ifite, Awka, Anambra State, Nigeria 
+              , you can always send us an Email to happinessjoseph065@gmail.com or you can call or whatsapp our service line : 
+              09021865092 or our delivery Line : 07047875669   
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header " id="flush-headingOne">
+                <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionTwo" aria-controls="flush-collapseOne">
+                  Do you sell wholesale or retail?
+              </h2>
+              <div class="accordion-collapse collapse" id="questionTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-3" >
+                  Yes, we sell both wholesale and retail.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header " id="flush-headingOne">
+                <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionThree" aria-controls="flush-collapseOne">
+                  Do you offer Door-to-Door Delivery?
+              </h2>
+              <div class="accordion-collapse collapse" id="questionThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-3" >
+                  No for now!, but we can waybill to your location while you pick up from the park 
+                  or send dispatch riders to pick for you
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header " id="flush-headingOne">
+                <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionFour" aria-controls="flush-collapseOne">
+                  How Long will goods/services ordered take before it will get to me?
+              </h2>
+              <div class="accordion-collapse collapse" id="questionFour" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-3" >
+                  Once payment is made, you will get your goods/services within 2 - 3 days but if it's services such as 
+                  web design and development takes 2 - 3 weeks depending on the kind of projects
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        
+    {%endblock%}
+</body>
+</html>

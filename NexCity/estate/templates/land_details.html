@@ -1,0 +1,193 @@
+{% extends "base.html"%}
+
+{%block body%}
+
+{%for i in estate%}
+<div class="container m-md-4">
+    <br><br><br>
+    <div class="row">
+
+
+        <div class="col-md-6 mx-md-6" style=" flex-grow: 1; flex-basis: 300px;
+        background:linear-gradient(45deg, #fff9f4, #ffffff );
+        padding: 2px;
+        border-radius: 8px;
+        text-decoration: none;">
+            <img src="{{i.image.url}}" style="width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;" alt=""></div>
+
+        <div class="col-md-6 mx-md-6">
+    <h2>{{i.title}}</h2>
+    <p><strong>Price:  N {{i.price}}  </strong><small class="fw-light text-decoration-line-through">
+        N{{i.price}}
+    </small></p>
+    <p> <strong>Location : </strong> <br>{{i.location}}</p>
+    <p> <strong>Documents: </strong> <br>{{i.documents}}</p>
+    
+    <p><strong>Landmarks : </strong> <br> {{i.landmarks}}</p>
+    <p><strong>Contact : </strong> <br>09021865092</p>
+   
+</div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-6 " >
+      <br><br>
+        <div style="background-color: rgb(201, 202, 202);">
+        {% if estate.google_map %}
+        <div class="d-block w-100 mr-4 px-2 pt-4 pb-2" > {{ i.google_map | safe }}</div>
+    
+        {%else%}
+    
+        <iframe class="d-block w-100 mr-4 px-2 pt-4 pb-2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2226712656275!2d7.083797674044091!3d6.234351726457861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104383defa8c0c15%3A0x7ba1f945fc97c1f!2sTHE%20POTTER&#39;S%20WHEEL%20INT&#39;L%20CHRISTIAN%20CENTER!5e0!3m2!1sen!2sng!4v1711209525147!5m2!1sen!2sng" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+        {%endif%}
+        <p class="text-center" style="color: black; font-weight: bold;">Google Map Image</p><br></div>
+        {%for i in estate%}
+
+    <a href="/checkout/{{i.id}}" class="btn justify-content-center  d-flex btn-warning shadow my-2 px-5 mr-3 py-2 ns-4" style="color: white; background-color:  rgb(255, 102, 0);"> Buy Estate </a>
+    <a class="btn d-flex justify-content-center btn-secondary" style="color: rgb(255, 102, 0); border-color:  rgb(255, 102, 0); background-color: rgb(255, 255, 255);"  href="{{i.subscription_form.url}}" download>Download Subscription Form</a>
+    
+    
+    {% if request.user.is_superuser %}
+    <a href="all_listing/" class="btn d-flex btn-warning shadow my-2 px-5 mr-3 py-2 ns-4 justify-content-center " style="color: white; background-color:  rgb(255, 102, 0);"> Update Estate </a>    
+    
+        {%endif%}
+        {%endfor%}
+    </div>
+
+    <div class="col-md-6">
+        <h3 class="text-center">Purchase this Land</h3><hr>
+
+        <form action="" method="post" enctype="multipart/form-data" novalidate class="shadow p-sm-5 p-2">
+            {% csrf_token %}
+           <div class="mb-3">
+            <label for="" class="form-label">Full Name</label>
+            <input type="text" Required name="name" class="form-control">
+           </div>
+           <div class="mb-3">
+            <label for="" class="form-label">Contact</label>
+            <input type="number" Required name="contact" class="form-control">
+           </div>
+           <div class="mb-3">
+            <label for="" class="form-label">Email</label>
+            <input type="email" Required name="email" class="form-control">
+           </div>
+           <div class="mb-3">
+            <label for="" class="form-label">Address</label>
+            <input type="text" Required name="address" class="form-control">
+           </div>
+           <div class="mb-3">
+            <label for="" class="form-label">State</label>
+            <input type="text" Required name="state" class="form-control">
+           <!-- <select name="state" id="state">
+                {% for value, label in choices %}
+                <option value="{{value}}">{{label}}</option>
+                {% endfor %}
+            </select>  -->            
+        </div>
+           <p class="text-dark fw-light policy" style="font-size: 12px; line-height: 14px;">By proceeding, you consent to receive calls and texts at the number you provided, including marketing by autodialer and prerecorded and artificial voice, and email, from realtor.com and others about your inquiry and other home-related matters, but not as a condition of any purchase. <a href="#">you can contact our branches</a><br></p>
+           <input type="submit" class="btn btn-button btn-oranger" name="submit">
+                
+            {% for message in messages %}
+           <p class="alert alert-danger my-3 text-danger" >{{message}}</p>
+            {% endfor %}
+            
+        </form>
+      
+   
+    
+</div>
+</div>
+
+</div>
+
+
+<div class="container">
+    <h3 class="text-center pt-5">Frequently Asked Questions</h3><hr>
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header " id="flush-headingOne">
+        <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-controls="flush-collapseOne">
+          How It works?
+      </h2>
+      <div class="accordion-collapse collapse" id="questionOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body p-3" >
+          1. Browse: Explore our wide range of services and products. <br>
+
+          2. Customize: Contact us to discuss your project requirements and get a personalized quote. <br>
+          
+          2. Payment : Make complete or advance payment through any of our vaious method to kick start production. <br>
+          
+          3. Create: Sit back while our experts bring your vision to life. <br>
+          
+          4. Enjoy: Whether it's a stunning website, captivating graphics, or beautifully printed materials, enjoy the results of our hard work. <br> 
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header " id="flush-headingOne">
+        <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-controls="flush-collapseOne">
+          How do we locate you?
+      </h2>
+      <div class="accordion-collapse collapse" id="questionOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body p-3" >
+     Through our address at Izunna Junction / Second Market Ifite, Awka, Anambra State, Nigeria 
+      , you can always send us an Email to happinessjoseph065@gmail.com or you can call or whatsapp our service line : 
+      09021865092 or our delivery Line : 07047875669   
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header " id="flush-headingOne">
+        <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionTwo" aria-controls="flush-collapseOne">
+          Do you sell wholesale or retail?
+      </h2>
+      <div class="accordion-collapse collapse" id="questionTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body p-3" >
+          Yes, we sell both wholesale and retail.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header " id="flush-headingOne">
+        <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionThree" aria-controls="flush-collapseOne">
+          Do you offer Door-to-Door Delivery?
+      </h2>
+      <div class="accordion-collapse collapse" id="questionThree" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body p-3" >
+          No for now!, but we can waybill to your location while you pick up from the park 
+          or send dispatch riders to pick for you
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header " id="flush-headingOne">
+        <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionFour" aria-controls="flush-collapseOne">
+          How Long will goods/services ordered take before it will get to me?
+      </h2>
+      <div class="accordion-collapse collapse" id="questionFour" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body p-3" >
+          Once payment is made, you will get your goods/services within 2 - 3 days but if it's services such as 
+          web design and development takes 2 - 3 weeks depending on the kind of projects
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+    
+
+ 
+
+{%endfor%}
+
+{% endblock %}

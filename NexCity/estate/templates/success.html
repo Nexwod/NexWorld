@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Register Successfully
+{% endblock title %}
+
+{% block body %} 
+<div class="container offset-sm-3 my-5">
+        <div class=" text-center">
+            <h2>Registration Done Successfully !!!</h2>
+            <div>
+                <img src="{% static 'imgages/success.png' %}" width="200" height="200" 
+                class="giphy-embed" allowfullscreen>
+            </div>
+            <small class="text-primary"><span class="fw-bold text-primary lh-0">N/B</span> your registration will be proccessed and confirmed in less than 12hrs, for more enquires visit our closest <a href="#">Branch</a> <br></small>
+                <a href="/" class=" col-sm-3 btn btn-oranger shadow px-sm-5 px-2 py-2 ns-4"> Continue</a>
+            </div>
+    </div>
+</div>
+
+{% endblock body %}

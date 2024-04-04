@@ -1,0 +1,40 @@
+{%extends 'base.html' %}
+{%load static %}
+
+{%  block title %}All Lands{%endblock %}
+
+{%  block body %}
+
+<div class="container"><br><br>
+<h1 class="text-center m-sm-4 ">Available Estates</h1>
+
+<div class="row">
+    {% for i in estate %}
+  
+    <div class="col-md-4 col-sm-6 ">
+    <div class="cards shadow">
+      <a href="/land_details/{{i.id}}" class="card">
+        <img src="{{i.image.url}}" alt="">
+        <div class="card_body">
+          <h5 class="card_title" style="text-decoration: none;">{{i.title}}</h5>
+          <p class="card_text" style="margin-bottom: 5px;">{{i.location}}</p>
+          
+          <div class="d-flex justify-content-between">
+            <div>
+          
+              <h6 class="card_title" style="text-decoration: none; margin: 0;">N{{i.price}}</h6>
+          <p style="margin: 0;"><small class="fw-bold">{{i.size}}SQM</small></p>
+          </div>
+          <div>
+            <button class="btn-sm btn-oranger" > Contact Agent</button>
+          </div>
+        </div>
+
+        </div>
+      </a>
+    </div>
+  </div>
+  
+    {% endfor %}</div>
+</div>
+{%endblock %}
