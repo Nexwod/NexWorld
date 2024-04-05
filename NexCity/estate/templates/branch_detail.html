@@ -1,0 +1,40 @@
+{% extends "base.html"%}
+
+{%block body%}
+
+<div class="container m-sm-4">
+    <br>
+<br>
+    <h1>Office Branch Details</h1><br><br>
+    <div class="row">
+        {%for i in branch%}
+        <div class="col-md">
+    <h3>{{i.name}}</h3>
+    <p> <strong>Address : </strong> <br>{{i.address}}</p>
+    
+    <p><strong>Date/Time : </strong> <br> {{i.days_of_meeting}}</p>
+    <p><strong>Team Leader : </strong> <br> {{i.team_lead}}</p>
+    <p><strong>Contact : </strong> <br>{{i.contact}}</p>
+</div>
+<div class="col-md " style="background-color: rgb(201, 202, 202);">
+    {% if RolPoints.google_map_url %}
+    <div class="d-block w-100 mr-4 px-2 pt-4 pb-2" > {{RolPoints.google_map_url | safe }}</div>
+
+    {%else%}
+
+    <iframe class="d-block w-100 mr-4 px-2 pt-4 pb-2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2226712656275!2d7.083797674044091!3d6.234351726457861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104383defa8c0c15%3A0x7ba1f945fc97c1f!2sTHE%20POTTER&#39;S%20WHEEL%20INT&#39;L%20CHRISTIAN%20CENTER!5e0!3m2!1sen!2sng!4v1711209525147!5m2!1sen!2sng" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    {%endif%}
+    <p class="text-center" style="color: black; font-weight: bold;">Google Map Image</p>
+
+    {%endfor%}
+</div>
+</div>
+    <!-- {% if request.user.is_superuser %}
+    <a class="btn my-2" style="background-color: #1C1B4F; color: aliceblue;" href="/locator/Rol_update/{{RolPoints.id}}">Update ROL Point</a>
+    
+    {%endif%} -->
+    
+</div>
+
+{% endblock body %}

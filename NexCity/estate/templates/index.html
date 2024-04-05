@@ -14,21 +14,28 @@
         <div class="container" ><div class="row text-align-center pt-5">
           
         <div class="col-lg ">
-            <div class="text-center text-sm-start">
+          <div class="text-center">
+            <div class=" text-sm-start heading">
           <h3 class="mt-5">Welcome to NexCity</h3>
                         <p class="fw-bold pt-3 main">No 1# Real Estate Investors Trust</p>
-                        <small>Secure Your Ultimate Land Investment Today with <strong>Nex<span class="oranger">City</strong> ...</small> <br></div><hr>
+                        <small>Secure Your Ultimate Land Investment Today with <strong>Nex<span class="oranger">City</strong> ...</small> <br></div></div><hr>
                     
                           <div class="buy-join ">
                             <a href="/all_listing/">Buy Estate</a>
                             <a href="/register_realtor/">Join Realtors</a>
                           </div>
 
-                        <form class="d-flex" role="search" action="/search">
+                        <small>Search for our Real Estates</small>
+                        <form class="d-flex" role="search" required method="POST" action="/searched_estate">
+                          {% csrf_token %}
                           
-                          <input class="form-control me-2" type="search" placeholder="Address, City, State or Neighbourhood" name = "search" aria-label="Search">
+                          <input class="form-control me-2" type="search" placeholder="Address, City, State or Neighbourhood" name = "search_estate" aria-label="Search">
                           <button class="btn btn-outline-dark oranger-btn" type="submit">Search</button>
+                          
                         </form>
+                        {% for message in messages %}
+                          <p class="alert alert-danger my-3 text-danger" >{{message}}</p>
+                           {% endfor %}
                         
 
                         <!-- <a href="all_listing/" class="btn btn-warning shadow my-2 px-5 mr-3 py-2 ns-4" style="color: white; background-color:  rgb(255, 102, 0);"> Buy Estate </a>
@@ -63,13 +70,27 @@
                           </div>
                           </div>
                           </div>
-                          <div class="ticker-container">
-                            <div class="ticker">
-                              <div class="ticker-text">
-                                Don't wait to buy land, <span class="oranger"> - Buy land and wait </span>** Become a Landlord today, ** Elevate Your Real Estate Journey <span class="oranger"> - Be Part of our 10,000+ team of realtors </span>**  
+
+                          <div class="d-none d-sm-block">
+                            <div class="ticker-container">
+                              <div class="ticker">
+                                <div class="ticker-text">
+                                  Don't wait to buy land, <span class="oranger"> - Buy land and wait </span>** Become a Landlord today, ** Elevate Your Real Estate Journey <span class="oranger"> - Be Part of our 10,000+ team of realtors </span>**  
+                                </div>
                               </div>
                             </div>
-                          </div>
+                        </div>
+                          
+                          <div class="d-sm-none">
+                            <div class="ticker-container">
+                              <div class="ticker">
+                                <div class="ticker-text">
+                                  Don't wait to buy land, <span class="oranger"> - Buy land and wait </span>  
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                          
 
 
 
@@ -78,11 +99,11 @@
     <div class=" " >
         <div class="row  text-center p-sm-3  text-dark border-bottom shadow bg-light" >
           <h2 class="text-dark p-3 text-center">Explore Our Listings</h2><hr>
-          <p class="para-products-offer px-4" style="font-size: 12px; font-family:'montserrat">
+          <p class="para-products-offer px-4 text-sm-lg">
             Browse through our extensive inventory of land listings, showcasing detailed information, stunning imagery, and comprehensive descriptions. Utilize our advanced search filters to narrow down your options by location, acreage, terrain features, and more.
           </p>
           
-          <h3 class="text-dark mx-4 text-start">Recent Estates</h3><hr>
+          <h3 class="text-dark mx-sm-5 mx-2 text-start">Recent Estates</h3><hr>
           <!-- {% for i in estate %}
 
           <div class="col text-center mb-4">
@@ -152,25 +173,6 @@
             <div class="accordion-item">
               <h2 class="accordion-header " id="flush-headingOne">
                 <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-controls="flush-collapseOne">
-                  How It works?
-              </h2>
-              <div class="accordion-collapse collapse" id="questionOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body p-3" >
-                  1. Browse: Explore our wide range of services and products. <br>
-        
-                  2. Customize: Contact us to discuss your project requirements and get a personalized quote. <br>
-                  
-                  2. Payment : Make complete or advance payment through any of our vaious method to kick start production. <br>
-                  
-                  3. Create: Sit back while our experts bring your vision to life. <br>
-                  
-                  4. Enjoy: Whether it's a stunning website, captivating graphics, or beautifully printed materials, enjoy the results of our hard work. <br> 
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header " id="flush-headingOne">
-                <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-controls="flush-collapseOne">
                   How do we locate you?
               </h2>
               <div class="accordion-collapse collapse" id="questionOne" data-bs-parent="#accordionFlushExample">
@@ -184,35 +186,45 @@
             <div class="accordion-item">
               <h2 class="accordion-header " id="flush-headingOne">
                 <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionTwo" aria-controls="flush-collapseOne">
-                  Do you sell wholesale or retail?
+                  How do I start the process of buying a Land?
               </h2>
               <div class="accordion-collapse collapse" id="questionTwo" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body p-3" >
-                  Yes, we sell both wholesale and retail.
+                  Getting started is easy! Simply reach out to one of our experienced real estate agents. They'll guide you through the entire process, from understanding your needs to finding the perfect property and closing the deal.
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header " id="flush-headingOne">
                 <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionThree" aria-controls="flush-collapseOne">
-                  Do you offer Door-to-Door Delivery?
+                  How do I schedule a property viewing?
               </h2>
               <div class="accordion-collapse collapse" id="questionThree" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body p-3" >
-                  No for now!, but we can waybill to your location while you pick up from the park 
-                  or send dispatch riders to pick for you
+                  To schedule a property viewing, simply contact one of our real estate agents or use our online booking system. We'll arrange a convenient time for you to visit the property and answer any questions you may have.
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header " id="flush-headingOne">
                 <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionFour" aria-controls="flush-collapseOne">
-                  How Long will goods/services ordered take before it will get to me?
+                  How Long will Land document ordered take before it will get to me?
               </h2>
               <div class="accordion-collapse collapse" id="questionFour" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body p-3" >
-                  Once payment is made, you will get your goods/services within 2 - 3 days but if it's services such as 
-                  web design and development takes 2 - 3 weeks depending on the kind of projects
+                  Once payment is made, you will get your goods/services within 2 - 3 weeks for proper documentaton and registration
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header " id="flush-headingw">
+                <button class="text-capitalize accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionFive" aria-controls="flush-collapseOne">
+                  Can I trust the information on your website?
+              </h2>
+              <div class="accordion-collapse collapse" id="questionFive" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-3" >
+                  Absolutely! We pride ourselves on providing accurate and up-to-date information to our clients. Our team of professionals ensures that all listings and resources on our website are reliable and trustworthy.
                 </div>
               </div>
             </div>

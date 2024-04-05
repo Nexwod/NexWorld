@@ -29,8 +29,10 @@ p.main{
     color: rgb(255, 102, 0);
 }
 
+
 a.nav-link {
-    font-size: small;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 div.buy-join{
@@ -165,3 +167,5 @@ td{
 p.policy{
     color: aqua;
 }
+
+

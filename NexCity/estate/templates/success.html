@@ -5,16 +5,19 @@
 {% endblock title %}
 
 {% block body %} 
-<div class="container offset-sm-3 my-5">
+<div class="container my-5">
+    <br>
+    <div class="row justify-content-center">
+    <div class="shadow col-md-4 py-sm-4 mx-3" style="border-radius: 20px;">
         <div class=" text-center">
             <h2>Registration Done Successfully !!!</h2>
             <div>
-                <img src="{% static 'imgages/success.png' %}" width="200" height="200" 
+                <img src="{% static 'images/success.png' %}" width="200" height="200" 
                 class="giphy-embed" allowfullscreen>
             </div>
-            <small class="text-primary"><span class="fw-bold text-primary lh-0">N/B</span> your registration will be proccessed and confirmed in less than 12hrs, for more enquires visit our closest <a href="#">Branch</a> <br></small>
-                <a href="/" class=" col-sm-3 btn btn-oranger shadow px-sm-5 px-2 py-2 ns-4"> Continue</a>
-            </div>
+            <small class="text-dark"><span class="fw-bold lh-0">N/B</span> your registration will be proccessed and confirmed in less than 12hrs, for more enquires visit our closest <a href="/find_branch" class="text-primary">Branch</a> <br></small><br>
+                <a href="/" class=" btn btn-oranger shadow"> Continue</a>
+            </div></div></div>
     </div>
 </div>
 

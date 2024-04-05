@@ -1,0 +1,56 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Thank You
+{% endblock title %}
+
+{% block body %} 
+<div class="container m-md-5  "><br><br>
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-3 p-5 shadow">
+<h3>Thank you!!</h3><br>
+
+<p class="fw-bold p-0 m-0">A NexCity Realtor will call you shortly</p>
+<p>We can connect you directly with a local real estate agent who can answer questions and schedule tours.
+To connect right away, call 09021865092 or visit our closest branch</p>
+
+<hr class="my-4">
+<p class="fw-bold p-0 m-0">Similar new construction homes</p>
+<p>New construction homes can offer design and layout customization as well as benefits like lower interest rates.
+</p>
+<div class="row justify-content-center">
+    {%for i in estate %}
+    <div class="col-lg-10 col-12 ">
+        <div class="cards shadow">
+            <a href="/land_details/{{i.id}}" class="card">
+              <img src="{{i.image.url}}" alt="">
+              <div class="card_body">
+                <h5 class="card_title" style="text-decoration: none;">{{i.title}}</h5>
+                <p class="card_text" style="margin-bottom: 5px;">{{i.location}}</p>
+                
+                <div class="d-flex justify-content-between">
+                  <div>
+                
+                    <h6 class="card_title" style="text-decoration: none; margin: 0;">N{{i.price}}</h6>
+                <p style="margin: 0;"><small class="fw-bold">{{i.size}}SQM</small></p>
+                </div>
+                <div>
+                  <button class="btn-sm btn-oranger" > Contact Agent</button>
+                </div>
+              </div>
+      
+              </div>
+            </a>
+          </div>
+    </div>
+    {%endfor%}
+
+</div>
+<br><hr>
+<p class="fw-light p-0 m-0"><small>By clicking "Get info," you consent to receive texts and calls (including by automated means and prerecorded/artificial voices) from Nexcity.com and real estate professionals about your request. Your consent is not required as a condition to buy. Msg/data rates may apply. You also agree to our  Privacy Policy </small></p>
+<a href="/all_listing/" class="btn btn-oranger mt-2">All Estates</a>
+
+</div></div></div>
+{% endblock body %}

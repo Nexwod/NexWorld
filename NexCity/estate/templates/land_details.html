@@ -33,7 +33,7 @@
 </div>
 
 
-<div class="row">
+<div class="row mt-4">
 
     <div class="col-md-6 " >
       <br><br>
@@ -49,19 +49,20 @@
         <p class="text-center" style="color: black; font-weight: bold;">Google Map Image</p><br></div>
         {%for i in estate%}
 
-    <a href="/checkout/{{i.id}}" class="btn justify-content-center  d-flex btn-warning shadow my-2 px-5 mr-3 py-2 ns-4" style="color: white; background-color:  rgb(255, 102, 0);"> Buy Estate </a>
-    <a class="btn d-flex justify-content-center btn-secondary" style="color: rgb(255, 102, 0); border-color:  rgb(255, 102, 0); background-color: rgb(255, 255, 255);"  href="{{i.subscription_form.url}}" download>Download Subscription Form</a>
-    
+        <div class="m-3">
+    <a class="btn d-flex justify-content-center btn-oranger"   href="{{i.subscription_form.url}}" download>Download Subscription Form</a>
+    </div>
     
     {% if request.user.is_superuser %}
-    <a href="all_listing/" class="btn d-flex btn-warning shadow my-2 px-5 mr-3 py-2 ns-4 justify-content-center " style="color: white; background-color:  rgb(255, 102, 0);"> Update Estate </a>    
+    <div class="m-3">
+    <a href="all_listing/" class="btn d-flex btn-oranger shadow ns-4 justify-content-center "> Update Estate </a>   </div> 
     
         {%endif%}
         {%endfor%}
     </div>
 
     <div class="col-md-6">
-        <h3 class="text-center">Purchase this Land</h3><hr>
+        <h3 class="text-center">More about this Property</h3><hr>
 
         <form action="" method="post" enctype="multipart/form-data" novalidate class="shadow p-sm-5 p-2">
             {% csrf_token %}
@@ -91,7 +92,7 @@
             </select>  -->            
         </div>
            <p class="text-dark fw-light policy" style="font-size: 12px; line-height: 14px;">By proceeding, you consent to receive calls and texts at the number you provided, including marketing by autodialer and prerecorded and artificial voice, and email, from realtor.com and others about your inquiry and other home-related matters, but not as a condition of any purchase. <a href="#">you can contact our branches</a><br></p>
-           <input type="submit" class="btn btn-button btn-oranger" name="submit">
+           <input type="submit"  value="Email Us" class="btn btn-button btn-oranger" name="submit">
                 
             {% for message in messages %}
            <p class="alert alert-danger my-3 text-danger" >{{message}}</p>

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 import smtplib
+from django.db import models
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from . models import Estate, Realtor, Branch, Purchase
@@ -17,6 +18,11 @@ def all_listing(request):
     estate = Estate.objects.order_by('-id')
     return render(request, "all_listing.html", locals())
 
+def branch_detail(request, id):
+    branch = Branch.objects.filter(id = id)
+    return render(request, "branch_detail.html", locals())
+
+
 def land_details(request, id):
     PASSWORD = "opjfhgonjoyxgupn"
     estate = Estate.objects.filter(id = id)
@@ -29,32 +35,35 @@ def land_details(request, id):
         email = request.POST['email']
         address = request.POST['address']
         state = request.POST['state']
-        
-        new_purchase = Purchase(
-            name=name,
-            contact=contact,
-            email=email,
-            address=address,
-            state=state,
-            estate=estates,
-            estate_name = s[0]
+        if Purchase.objects.filter(email=email, name=name, estate=estates).exists():
+            messages.info(request, "You have already contacted us, we will contact you shortly")
+            return redirect('land_details', id)
+        else:
+            new_purchase = Purchase(
+                name=name,
+                contact=contact,
+                email=email,
+                address=address,
+                state=state,
+                estate=estates,
+                estate_name = s[0]
 
-        )
-  
-        new_purchase.save()
+            )
+    
+            new_purchase.save()
 
-        # with smtplib.SMTP("smtp.gmail.com") as connection:
-        #     connection.starttls()
-        #     connection.login(user="happinessjoseph065@gmail.com", password=PASSWORD)
-        #     connection.sendmail(from_addr="happinessjoseph065@gmail.com", to_addrs="happinessjoseph@gmail.com", msg=f"subject: NexCity\n\n Name = {name}, Contact = {contact}, Email = {email}, Address = {address}, {state} made a request to purchase {estate.title}")
-        
-        # with smtplib.SMTP("smtp.gmail.com") as connection:
-        #     connection.starttls()
-        #     connection.login(user="happinessjoseph065@gmail.com", password=PASSWORD)
-        #     connection.sendmail(from_addr="happinessjoseph065@gmail.com", to_addrs=email, msg=f"subject: NexCity\n\n Thank you {name}, for making a request to purchase {estate.title}, below is the subscription form attached, fill it and send to our email or to nearest branch close to you as we process your request")
-        
+            # with smtplib.SMTP("smtp.gmail.com") as connection:
+            #     connection.starttls()
+            #     connection.login(user="happinessjoseph065@gmail.com", password=PASSWORD)
+            #     connection.sendmail(from_addr="happinessjoseph065@gmail.com", to_addrs="happinessjoseph@gmail.com", msg=f"subject: NexCity\n\n Name = {name}, Contact = {contact}, Email = {email}, Address = {address}, {state} made a request to purchase {estate.title}")
+            
+            # with smtplib.SMTP("smtp.gmail.com") as connection:
+            #     connection.starttls()
+            #     connection.login(user="happinessjoseph065@gmail.com", password=PASSWORD)
+            #     connection.sendmail(from_addr="happinessjoseph065@gmail.com", to_addrs=email, msg=f"subject: NexCity\n\n Thank you {name}, for making a request to purchase {estate.title}, below is the subscription form attached, fill it and send to our email or to nearest branch close to you as we process your request")
+            
 
-        return redirect('/success/')
+            return redirect('/thank_you/')
     else:    
         return render(request, "land_details.html", locals()) 
 
@@ -70,8 +79,105 @@ def dashboard(request):
     purchase = Purchase.objects.all()
     return render(request, "dashboard.html", locals())
 
+def find_realtors(request):
+    # realtors = Realtor.objects.all()
+    if request.method == 'POST':
+        address = request.POST['location']
+        name = request.POST['name']
+        if address is not None:
+
+
+            results = Realtor.objects.all()
+            if address and name:
+                results = results.filter(address__icontains=address)
+                results = results.filter(name__icontains=name)
+                if results:
+                    return render(request, 'find_realtors.html', {'results': results, 'address': address, 'name': name,})
+                else:
+                    no_results = "no_results"
+                    return render(request, 'find_realtors.html', {'no_results': no_results , 'address':address, 'name':name})
+
+            elif address:
+                results = results.filter(address__icontains=address)
+                if results:
+                    return render(request, 'find_realtors.html', {'results': results, 'address': address, 'name': name,})
+                else:
+                    no_results = "no_results"
+                    return render(request, 'find_realtors.html', {'no_results': no_results , 'address':address, 'name':name})
+
+
+            elif name:
+                results = results.filter(name__icontains=name)
+                if results:
+                    return render(request, 'find_realtors.html', {'results': results, 'address': address, 'name': name,})
+                else:
+                    no_results = "no_results"
+                    return render(request, 'find_realtors.html', {'no_results': no_results , 'address':address, 'name':name})
+            
+                
+            
+            
+        else:
+            messages.info(request, "This Field is required to search Estates")
+            return redirect('/find_realtors')
+
+    return render(request, "find_realtors.html")
+
+def find_branch(request):
+    # realtors = Realtor.objects.all()
+    branch = Branch.objects.all()
+    if request.method == 'POST':
+        address = request.POST['location']
+        if address is not None:
+            
+            if address:
+                results = Branch.objects.all()
+                results = results.filter(address__icontains=address)
+                if results:
+                    return render(request, 'find_branch.html', {'results': results, 'address': address})
+                    
+                No_results ="No results"
+                return render(request, 'find_branch.html', {'No_results': No_results, 'address':address})
+            else:
+                messages.info(request, "This Field is required to search Branches")
+            return redirect('/find_branch')
+        else:
+            messages.info(request, "This Field is required to search Branches")
+            return redirect('/find_branch', locals())
+
+    return render(request, "find_branch.html", locals())
+
+def searched_estate(request):
+    if request.method == 'POST':
+        
+        address = request.POST['search_estate']
+        if address is not None and address != " ":
+            results = Estate.objects.all()
+            if address:
+                results = Estate.objects.filter(models.Q(title__icontains=address) | models.Q(location__icontains=address))
+                
+                if results:
+                    return render(request, 'searched_estate.html', {'results': results, 'address': address})
+                else:
+                    no_results = "no_results"
+                    return render(request, 'searched_estate.html', {'no_results': no_results , 'address':address,})
+            
+            
+        else:
+            messages.info(request, "This Field is required to search Estates")
+            return redirect('/')
+    
+
 def about(request):
     return render(request, "about.html")
+
+
+def thank_you(request):
+    estate = Estate.objects.all()[:5:1]
+    return render(request, "thank_you.html", locals())
+
+
+
 
 
 def estate_registration(request):
@@ -137,7 +243,7 @@ def register_realtor(request):
 
         if Realtor.objects.filter(email=email).exists():
             messages.info(request, "Email already exists")
-            return redirect('register_realtor')
+            return redirect('/register_realtor/')
         else:
             new_realtor = Realtor(
                 name = f'{first_name} {last_name}',

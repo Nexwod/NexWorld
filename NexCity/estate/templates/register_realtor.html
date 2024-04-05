@@ -18,7 +18,7 @@
         border-radius: 8px 8px 0 0;" alt="">
         <h3 class="fw-bold text-body-emphasis">Turn your passion for Real Estate into a Rewarding Career</h3>
         <p class="text-body-secondary" >Welcome to <strong>NexCity</strong>, Where we empower aspiring real estate professionals to thrive in a dynamic industry. Join us in transforming properties into possibilities and embark on a journey where every sale is a step towards success. Explore the world of real estate with us, where your ambition meets endless opportunities!</p>
-        <a href="#" class="btn btn-oranger">Register Now</a>
+        <!-- <a href="#" class="btn btn-oranger">Register Now</a> -->
       </div>
 
       <div class="col">
@@ -53,9 +53,12 @@
       
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Register as Realtor</h4>
-        <form class="needs-validation" novalidate method="POST" action="/register_realtor/">
+        <form class="needs-validation realtor_form" novalidate method="POST" action="/register_realtor/">
           {% csrf_token %}
           <div class="row g-3">
+            {% for message in messages %}
+            <p class="alert alert-danger my-3 text-danger" >{{message}}</p>
+             {% endfor %}
             <div class="col-sm-6">
               <label for="firstName" class="form-label">First name</label>
               <input type="text" class="form-control" id="firstName" placeholder="" name="first_name" value="" required>
@@ -211,6 +214,9 @@
 
           <button class="w-100 btn btn-oranger btn-lg" type="submit">Register</button>
         </form>
+        {% for message in messages %}
+        <p class="alert alert-danger my-3 text-danger" >{{message}}</p>
+         {% endfor %}
       </div>
       
       <div class="col-md-5 col-lg-4 ">

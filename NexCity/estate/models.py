@@ -16,10 +16,12 @@ class Estate(models.Model):
     google_map = models.TextField(blank=True)
 
 class Branch(models.Model):
+    name = models.CharField(max_length=200)
     address = models.CharField(max_length = 400)
     team_lead = models.CharField(max_length = 400)
     contact = models.CharField(max_length = 400)
-    google_map = models.TextField()
+    days_of_meeting = models.CharField(max_length=400, null = True)
+    google_map = models.TextField(default='<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1646936597103!2d7.084985270106946!3d6.242013912575235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1043838870493793%3A0x8812a56a24e2139d!2sIzunna%20Hospital%20And%20Maternity!5e0!3m2!1sen!2sng!4v1712316657373!5m2!1sen!2sng" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>', blank=True)
 
 class Purchase(models.Model):
     name = models.CharField(max_length = 400)
@@ -84,7 +86,7 @@ class Realtor(models.Model):
     gender = models.CharField(choices=GENDER, max_length=10)
     email= models.EmailField(max_length = 100)
     state= models.CharField(choices = STATES_CHOICE, max_length=100)
-    profile_picture= models.ImageField(upload_to='profile_image', default="default.png", blank=True)
+    profile_picture= models.ImageField(upload_to='profile_image', default="default.png", blank=True, null=True)
     occupation = models.CharField(max_length = 100, blank = True, null=True)
     invite= models.CharField(max_length = 100, blank = True)
     invite_contact= models.CharField(max_length = 100, blank = True, null=True)

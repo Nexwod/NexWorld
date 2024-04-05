@@ -1,0 +1,132 @@
+{%extends 'base.html' %}
+{%load static %}
+
+{%  block title %}All Lands{%endblock %}
+
+{%  block body %}
+
+<div class="container"><br><br>
+
+<div class="row py-5">
+    <div class="col-md-5 mx-md-6 order-md-last" style=" flex-grow: 1; flex-basis: 300px;
+    background:linear-gradient(45deg, #fff9f4, #ffffff );
+    padding: 2px;
+    border-radius: 8px;
+    text-decoration: none;">
+        <img src="{% static 'images/branch1.jpg' %}" style="width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;" alt=""></div>
+
+
+
+    <div class="col-md-7">
+    <div class="">
+<h1 class="fw-sm-bold pt-4">Discover Our Office Branches</h1>
+<p>Welcome to NexCity network of over 1000 office branches nationwide, where excellence meets accessibility. Whether you're seeking professional guidance in buying, selling, or investing in real estate, our conveniently located branches are here to serve you.</p></div>
+
+
+<form action="/find_branch/" id="my_form" method="POST" enctype="multipart/form-data" novalidate class=" ">
+    {% csrf_token %}
+    <small>Enter your Location state or city</small>
+    <div class="row justify-content-between">
+    <div class="col-8 mb-2">
+    <input type="text" placeholder="state or address" required name="location" class="form-control">
+   </div>
+
+
+   <div class="col mb-3">
+   <input type="submit" class="btn btn-button btn-oranger   " name="submit"></div>
+      </div>  
+    {% for message in messages %}
+   <p class="alert alert-danger my-3 text-danger" >{{message}}</p>
+    {% endfor %}
+</div>
+
+</form>
+</div>
+
+
+<div class="">
+    {%if results%}
+    <h2>Your Search</h2>
+    {%endif%}
+ 
+<div class="row gap-2 justify-content-around text-capitalize" >
+    {%for i in results%}
+<div class="col-sm-5 shadow p-3" style="border-radius: 10px;">
+        <h4>{{i.name}}</h4>
+    <div class="row">
+        <div class="col-10">
+    <p><em>{{i.address|truncatechars:40}}</em></p></div>
+    <div class="col-2">
+    <a class="btn btn-sm px-4 float-end btn-oranger"  href="#">view</a></div></div>
+     </div>
+        {%endfor%}
+
+   
+</div>
+
+{% if No_results %}
+<h2 class="mt-4 text-center">Not Result for "{{address}}"</h2><br><br>
+
+{%endif%}
+
+
+{% if not results %}
+<h2 class="mt-4">All Our Office Branches</h2>
+<hr class="my-3">
+{%endif%}
+<div class="row gap-2 justify-content-around text-capitalize" >
+    
+    {%for i in branch%}
+<div class="col-sm-5 shadow p-3 mt-4" style="border-radius: 10px;">
+        <h4>{{i.name}}</h4>
+    <div class="row ">
+        <div class="col-10">
+    <p><em>{{i.address|truncatechars:40}}</em></p></div>
+    <div class="col-2">
+    <a class="btn btn-sm px-4 float-end btn-oranger"  href="/branch_detail/{{i.id}}">view</a></div></div>
+    </div>
+        {%endfor%}
+
+    
+</div>
+
+<div class="row py-5 mt-sm-3">
+  
+    <div class="col-md-7 order-md-last">
+    <div class="">
+<h3 class="fw-sm-bold pt-4">Make sure your dreams are in trusted hands.</h3>
+<small>Visit one of our office branches today and experience the NexCity Realty difference firsthand</small><br>
+<p class="fw-bold" style="font-size: x-large;">The NexCity difference</p>
+<p>Are you passionate about real estate and eager to make a difference in your community? Consider joining our team at NexCity. With our comprehensive training programs, advanced technology, and supportive network, you'll have all the tools you need to succeed in your real estate career.</p>
+
+</div>
+
+
+    
+ 
+    {% for message in messages %}
+   <p class="alert alert-danger my-3 text-danger" >{{message}}</p>
+    {% endfor %}
+</form></div>
+
+<div class="col-md-5 mx-md-6" style=" flex-grow: 1; flex-basis: 300px;
+background:linear-gradient(45deg, #fff9f4, #ffffff );
+padding: 2px;
+border-radius: 8px;
+text-decoration: none;">
+    <img src="{% static 'images/branch2.jpg' %}" style="width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;" alt=""></div>
+
+
+
+
+
+</div>
+
+</div>
+{%endblock %}

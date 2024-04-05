@@ -8,9 +8,196 @@
     <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Nexcity | {%block title%} {%endblock%}</title>
 </head>
 <body>
+  <style>
+
+/* Custom CSS for text size */
+p.main{
+        color: rgb(255, 102, 0);
+        font-size: 45px; 
+        font-family: 'montserrat';
+
+}
+
+.btn-oranger{
+    background-color:  rgb(255, 102, 0);
+     color: white;
+     border-color: rgba(240, 248, 255, 0);
+}
+
+.btn-oranger:hover{
+    background-color:  rgb(173, 71, 3);
+     color: white;
+     border-color: rgba(240, 248, 255, 0);
+}
+
+.oranger{
+    color: rgb(255, 102, 0);
+}
+
+.oranger-btn{
+    background-color: white;
+    border-color: rgb(255, 102, 0);
+    color: rgb(255, 102, 0);
+}
+
+
+a.nav-link {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+div.buy-join{
+    display: flex;
+    
+    
+}
+
+
+
+.buy-join a{
+    
+    text-decoration: none;
+    color:  rgb(255, 102, 0);
+    font-weight: 600;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.buy-join a:hover{
+    text-align: center;
+    text-decoration: none;
+    color:  rgb(197, 98, 32);
+    font-weight: 600;
+    border-bottom: solid rgb(255, 102, 0);
+    border-width: bold;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 475.98px) { /* Small screens */
+    p.main {
+        font-size: 35px; 
+         /* Adjust font size for small screens */
+    }
+}
+@media (max-width: 475.98px) { /* Small screens */
+    div.buy-join {
+        justify-content: center; 
+         /* Adjust font size for small screens */
+    }
+}
+
+@media (min-width: 476px) { /* Medium and larger screens */
+    p.main {
+        font-size: 2.5rem; /* Adjust font size for medium and larger screens */
+    }
+}
+
+@media (min-width: 476px) { /* Medium and larger screens */
+    div.headings {
+        text-align: center; /* Adjust font size for medium and larger screens */
+    }
+}
+
+
+
+.ticker-container {
+    overflow: hidden;
+    background-color: black;
+  }
+  
+  .ticker {
+    display: flex;
+    animation: ticker-slide 20s linear infinite;
+  }
+  
+  .ticker-text {
+    color: white;
+    padding-right: 0%; /* Adjust according to the length of the text */
+  }
+  
+  .ticker-text span{
+    color: orange;
+    padding-right: 0%; /* Adjust according to the length of the text */
+  }
+  
+  @keyframes ticker-slide {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+
+
+.cards {
+    display: flex;
+    margin-top: 25px;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.card{
+    flex-grow: 1;
+    flex-basis: 300px;
+    background:linear-gradient(45deg, #fff9f4, #ffffff );
+    padding: 2px;
+    border-radius: 8px;
+    text-decoration: none;
+
+}
+
+.card img{
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.im img{
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.card_body {
+    text-align: start;
+    padding: 15px 20px 20px;
+    
+    color: black;
+}
+
+.card_title{
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0;
+}
+.card_body{
+    font-size: 14px;
+    font-weight: lighter;
+
+   
+}
+
+td{
+    font-size: smaller;
+}
+
+p.policy{
+    color: aqua;
+}
+
+
+
+</style>
+
+
+
+
     <nav class="navbar navbar-expand-md navbar-light  fixed-top bg-light" aria-label="Fourth navbar example">
         <div class="container-fluid">
           <a class="navbar-brand fw-bold mx-sm-4" href="/">Nex<span class="oranger">City</span> </a>
@@ -26,19 +213,26 @@
               <li class="nav-item">
                 <a class="nav-link " style="color: rgb(255, 102, 0);" href="/all_listing/">Our Estates</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/register_realtor/">Join Realtors</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Realtor</a>
+                <ul class="dropdown-menu text-center">
+                  <li><a class="nav-link" href="/register_realtor/">Join Realtors</a> </li>
+                  <li><a class="nav-link" href="/find_realtors/">Find Realtors</a></li>
+                  <!-- <li><a class="nav-link" href="/register_realtor/">Join Realtors</a></li> -->
+                </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/about/">About us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/contact/">Contact us</a>
+                <a class="nav-link" href="/find_branch/">Office Branch</a>
               </li>
               
             </ul>
-            <form role="search">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <form role="search" class="d-flex gap-2" required method="POST" action="/searched_estate">
+              {% csrf_token %}
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search_estate">
+              <button class="btn btn-oranger"  type="submit">Search</button>
             </form>
           </div>
         </div>
@@ -53,24 +247,24 @@
           <div class="row">
            
             <div class="col-6 col-md-2 mb-3 text-start">
-              <h5>Section</h5>
+              <h5>Client Section</h5>
               <ul class="nav flex-column ">
                 <li class="nav-item  mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">Home</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">Features</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">Pricing</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">About</a></li>
+                <li class="nav-item mb-2"><a href="/all_listing" class="nav-link p-0 text-dark text-body-secondary">All Estates</a></li>
+                <li class="nav-item mb-2"><a href="/find_realtor" class="nav-link p-0 text-dark text-body-secondary">Find Realtor</a></li>
+                <li class="nav-item mb-2"><a href="/find_branch" class="nav-link p-0 text-dark text-body-secondary">Locate Branch</a></li>
+                <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-dark text-body-secondary">About</a></li>
               </ul>
             </div>
       
             <div class="col-6 col-md-2 mb-3 text-start text-dark">
-              <h5>Section</h5>
+              <h5>Realtor</h5>
               <ul class="nav flex-column">
-                <li class="nav-item  mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">Home</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">Features</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">Pricing</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">About</a></li>
+                <li class="nav-item  mb-2"><a href="/" class="nav-link p-0 text-dark text-body-secondary">Home</a></li>
+                <li class="nav-item mb-2"><a href="/register_realtor" class="nav-link p-0 text-dark text-body-secondary">Register</a></li>
+                <li class="nav-item mb-2"><a href="/find_realtor" class="nav-link p-0 text-dark text-body-secondary">Find Realtor</a></li>
+                <li class="nav-item mb-2"><a href="/register_realtor" class="nav-link p-0 text-dark text-body-secondary">Realtor FAQs</a></li>
+                <li class="nav-item mb-2"><a href="/find_branch" class="nav-link p-0 text-dark text-body-secondary">Branch</a></li>
               </ul>
             </div>
       
@@ -81,7 +275,7 @@
                 <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                   <label for="newsletter1" class="visually-hidden">Email address</label>
                   <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                  <button class="btn btn-primary" style="background-color:  rgb(255, 102, 0);" type="button">Subscribe</button>
+                  <button class="btn btn-oranger"  type="button">Subscribe</button>
                 </div>
               </form>
             </div>
@@ -101,6 +295,7 @@
 </body>
 
 <script src="{% static 'js/all.min.js' %}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>

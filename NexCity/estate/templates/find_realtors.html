@@ -1,0 +1,146 @@
+{%extends 'base.html' %}
+{%load static %}
+
+{%  block title %}All Lands{%endblock %}
+
+{%  block body %}
+
+<div class="container"><br><br>
+
+<div class="row py-5">
+    <div class="col-md-5 mx-md-6 order-md-last" style=" flex-grow: 1; flex-basis: 300px;
+    background:linear-gradient(45deg, #fff9f4, #ffffff );
+    padding: 2px;
+    border-radius: 8px;
+    text-decoration: none;">
+        <img src="{% static 'images/Realtor1.jpg' %}" style="width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;" alt=""></div>
+
+
+
+    <div class="col-md-7">
+    <div class="">
+<h1 class="fw-sm-bold pt-4">Find a Realtor</h1>
+<p>Search for a Realtor from more than 10,000 realtors nationwide</p></div>
+
+
+<form action="/find_realtors/" id="my_form" method="POST" enctype="multipart/form-data" novalidate class=" ">
+    {% csrf_token %}
+    <small>Enter Location or/and Name of Realtor</small>
+    <div class="row">
+    <div class="col-md-4 mb-2">
+    <input type="text" placeholder="state or address" required name="location" class="form-control">
+   </div>
+
+   <div class=" col-md-4 mb-2">
+    
+    <input type="text" required name="name" placeholder="Realtor Name" class="form-control ">
+   </div>
+   
+
+   <div class="col-md mb-2">
+   <input type="submit" class="btn btn-button btn-oranger   " name="submit"></div>
+      </div>  
+    {% for message in messages %}
+   <p class="alert alert-danger my-3 text-danger" >{{message}}</p>
+    {% endfor %}
+</div>
+
+</form>
+</div>
+
+{%if no_results%}
+
+<h3 class="text-center">No Results for "{{name}}, {{address}}"</h3>
+
+{% endif %}
+
+<div class="">
+ 
+<div class="row justify-content-around" >
+    {%for i in results%}
+<div class="col-sm-5 shadow p-4 my-3" style="border-radius: 20px;">
+<div class="row">
+    <div class="col-5">
+
+        {% if i.profile_picture %}
+        <img src="{{i.profile_picture.url}}" style="width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;" alt="">
+    
+        {%else%}
+    
+        <img src="{% static 'images/default.png' %}" style="width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;" alt="">
+    
+        {%endif%}
+        
+    </div>
+<div class="col-7 ">
+    <p class="fw-bold p-0 m-0 text-capitalize" style="font-size: large;">{{i.name}}</p>
+    <p class="fw-light p-0 m-0">{{i.address}}</p>
+    <hr my-2>
+    <p class="p-0 m-0"><img src="{% static 'images/contact.png' %}" style="width: auto;
+        height: 20px;" alt="">  {{i.contact}}</p>
+    <p class="p-0 m-0"><img src="{% static 'images/email.png' %}" style="width: 20px;
+        height: auto;"
+          alt="">  {{i.email|truncatechars:20}}</p>
+
+
+          {% if i.verified %}
+          <p><small class="fw-bold text-success">verified</small></p>
+      
+          {%else%}
+      
+          <p><small class="fw-bold oranger">Pending verification..</small></p>
+          {%endif%}
+        
+</div>
+</div></div>
+        {%endfor%}
+
+    </div>
+</div>
+
+<div class="row py-5 mt-sm-3">
+  
+    <div class="col-md-7 order-md-last">
+    <div class="">
+<h3 class="fw-sm-bold pt-4">Make sure your dreams are in trusted hands.</h3>
+<small>Search for a Realtor with NexCity, Become a Realtor with NexCity</small><br>
+<p class="fw-bold" style="font-size: x-large;">The Realtor difference</p>
+<p>Buying a home is the biggest investment most people will ever make, but not all real estate agents are equal. Find out how the experience and training of a REALTOR® can help you get into your dream home.</p>
+
+</div>
+
+
+    
+ 
+    {% for message in messages %}
+   <p class="alert alert-danger my-3 text-danger" >{{message}}</p>
+    {% endfor %}
+</form></div>
+
+<div class="col-md-5 mx-md-6" style=" flex-grow: 1; flex-basis: 300px;
+background:linear-gradient(45deg, #fff9f4, #ffffff );
+padding: 2px;
+border-radius: 8px;
+text-decoration: none;">
+    <img src="{% static 'images/realtor.jpg' %}" style="width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;" alt=""></div>
+
+
+
+
+
+</div>
+
+</div>
+{%endblock %}
