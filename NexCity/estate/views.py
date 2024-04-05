@@ -35,7 +35,12 @@ def land_details(request, id):
         email = request.POST['email']
         address = request.POST['address']
         state = request.POST['state']
-        if Purchase.objects.filter(email=email, name=name, estate=estates).exists():
+        if not name or not contact or not email or not address or not state:
+            messages.info(request, "Make sure to fill all details in the form")
+            return redirect('land_details', id)
+
+
+        if Purchase.objects.filter(email=email, contact=contact, estate=estates).exists():
             messages.info(request, "You have already contacted us, we will contact you shortly")
             return redirect('land_details', id)
         else:
@@ -84,6 +89,10 @@ def find_realtors(request):
     if request.method == 'POST':
         address = request.POST['location']
         name = request.POST['name']
+        if not address and not name or address ==" " or name==" " and address==" " or not address and name==" ":
+            messages.info(request, "Make sure to fill all details in the form")
+            return redirect('/find_realtors')
+
         if address is not None:
 
 
@@ -128,6 +137,10 @@ def find_branch(request):
     branch = Branch.objects.all()
     if request.method == 'POST':
         address = request.POST['location']
+        if not address or address==" ":
+            messages.info(request, "Make sure to input address")
+            return redirect('/find_branch')
+
         if address is not None:
             
             if address:
@@ -151,7 +164,7 @@ def searched_estate(request):
     if request.method == 'POST':
         
         address = request.POST['search_estate']
-        if address is not None and address != " ":
+        if address and address != " ":
             results = Estate.objects.all()
             if address:
                 results = Estate.objects.filter(models.Q(title__icontains=address) | models.Q(location__icontains=address))
@@ -194,6 +207,9 @@ def estate_registration(request):
         land_image = request.POST['land_image']
         subscription_form = request.POST['subscription_form']
         c_of_o = request.POST['c_of_o']
+        if not title or not location or not price:
+            messages.info(request, "Please fill in required details [title, location and price]")
+            return redirect('estate_registration')
         
         if Estate.objects.filter(title=title).exists():
             messages.info(request, "Estate already exists")
@@ -240,6 +256,22 @@ def register_realtor(request):
         invitee = request.POST['invitee']
         contact_invitee = request.POST['contact_invitee']
         receipt = request.POST['receipt']
+        
+        if not first_name and not email and not phone and not address:
+            messages.info(request, "Please fill in required details")
+            return redirect('/register_realtor')
+        if not first_name and not last_name:
+            messages.info(request, "Please fill in your names")
+            return redirect('/register_realtor')
+        if not email:
+            messages.info(request, "Please fill in your email")
+            return redirect('/register_realtor')
+        if not phone:
+            messages.info(request, "Please fill in your contact")
+            return redirect('/register_realtor')
+        if not address:
+            messages.info(request, "Please fill in your address")
+            return redirect('/register_realtor')
 
         if Realtor.objects.filter(email=email).exists():
             messages.info(request, "Email already exists")
