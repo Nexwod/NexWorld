@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/NEXCITYLOGO1.png'%}">
     <title>Nexcity | {%block title%} {%endblock%}</title>
 </head>
 <body>
@@ -200,7 +201,10 @@ p.policy{
 
     <nav class="navbar navbar-expand-md navbar-light  fixed-top bg-light" aria-label="Fourth navbar example">
         <div class="container-fluid">
-          <a class="navbar-brand fw-bold mx-sm-4" href="/">Nex<span class="oranger">City</span> </a>
+          <a class="navbar-brand fw-bold mx-sm-4" href="/"><img src="{% static 'images/NEXCITYLOGO1.png' %}" style="width: auto;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;" alt=""> <span > Nex<span class="oranger">City</span></span> </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -242,14 +246,14 @@ p.policy{
 
 
 
-      <div class="container">
-        <footer class="py-5">
+      <div class="container pt-5 mt-5 px-3">
+        <footer class="pt-5">
           <div class="row">
            
             <div class="col-6 col-md-2 mb-3 text-start">
               <h5>Client Section</h5>
               <ul class="nav flex-column ">
-                <li class="nav-item  mb-2"><a href="#" class="nav-link p-0 text-dark text-body-secondary">Home</a></li>
+                <li class="nav-item  mb-2"><a href="/" class="nav-link p-0 text-dark text-body-secondary">Home</a></li>
                 <li class="nav-item mb-2"><a href="/all_listing" class="nav-link p-0 text-dark text-body-secondary">All Estates</a></li>
                 <li class="nav-item mb-2"><a href="/find_realtor" class="nav-link p-0 text-dark text-body-secondary">Find Realtor</a></li>
                 <li class="nav-item mb-2"><a href="/find_branch" class="nav-link p-0 text-dark text-body-secondary">Locate Branch</a></li>
@@ -272,7 +276,7 @@ p.policy{
               <form>
                 <h5>Subscribe to our newsletter</h5>
                 <p>Monthly digest of what's new and exciting from us.</p>
-                <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                <div class="d-flex w-100 gap-2">
                   <label for="newsletter1" class="visually-hidden">Email address</label>
                   <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
                   <button class="btn btn-oranger"  type="button">Subscribe</button>
@@ -281,13 +285,9 @@ p.policy{
             </div>
           </div>
       
-          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+          <div class="d-flex flex-column flex-sm-row justify-content-between pt-4 mt-4 border-top">
             <p>&copy; 2024 Company, Inc. All rights reserved.</p>
-            <ul class="list-unstyled d-flex">
-              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-            </ul>
+          
           </div>
         </footer>
       </div>

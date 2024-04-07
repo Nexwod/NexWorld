@@ -49,7 +49,8 @@
 
 <div class="">
     {%if results%}
-    <h2>Your Search</h2>
+    <h2 class="mt-4 text-center">All results for "{{address}}"</h2><br><br>
+
     {%endif%}
  
 <div class="row gap-2 justify-content-around text-capitalize" >
@@ -68,7 +69,7 @@
 </div>
 
 {% if No_results %}
-<h2 class="mt-4 text-center">Not Result for "{{address}}"</h2><br><br>
+<h2 class="mt-4 text-center">No results for "{{address}}"</h2><br><br>
 
 {%endif%}
 

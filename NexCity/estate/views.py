@@ -272,6 +272,9 @@ def register_realtor(request):
         if not address:
             messages.info(request, "Please fill in your address")
             return redirect('/register_realtor')
+        if not state:
+            messages.info(request, "Please fill in your state")
+            return redirect('/register_realtor')
 
         if Realtor.objects.filter(email=email).exists():
             messages.info(request, "Email already exists")

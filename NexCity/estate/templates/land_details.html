@@ -38,7 +38,7 @@
     <div class="col-md-6 " >
       <br><br>
         <div style="background-color: rgb(201, 202, 202);">
-        {% if estate.google_map %}
+        {% if i.google_map %}
         <div class="d-block w-100 mr-4 px-2 pt-4 pb-2" > {{ i.google_map | safe }}</div>
     
         {%else%}
@@ -50,8 +50,12 @@
         {%for i in estate%}
 
         <div class="m-3">
+    {%if i.subscription_form%}
     <a class="btn d-flex justify-content-center btn-oranger"   href="{{i.subscription_form.url}}" download>Download Subscription Form</a>
+    {%endif%}
+
     </div>
+    
     
     {% if request.user.is_superuser %}
     <div class="m-3">
